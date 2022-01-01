@@ -1,0 +1,21 @@
+{
+    "blogs": [{
+            "title": "Get satrt with react  ",
+            "body": "Why do we use e retion, injected humour, or non-characteristic words etc.",
+            "author": "mabrouk",
+            "id": 1
+        },
+        {
+            "title": "web Angular ",
+            "body": "Why do we use e retion, injected humour, or non-characteristic words etc.",
+            "author": "mabrouk",
+            "id": 2
+        },
+        {
+            "title": "Spring boot tuto",
+            "body": "Why do we use e retion, injected humour, or non-characteristic words etc.",
+            "author": "yassine",
+            "id": 3
+        }
+    ]
+}
