@@ -2,11 +2,11 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import useFetch from './customHooks/useFetch'
 import BlogList from './BlogList';
+
 const Home = () => {
     
      const {data:blogs ,loading,error} = useFetch("http://localhost:8000/blogs");
-
-    
+ 
     const deleteBlog = (id) => {
         blogs = blogs.filter((blog) => blog.id !== id);
       //  setBlogs(newBlog);
