@@ -1,38 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-no-comment-textnodes */
-import { useState, useEffect } from "react";
+import useFetch from './customHooks/useFetch'
 import BlogList from './BlogList';
 const Home = () => {
     
-    const [blogs, setBlogs] = useState(null);
-    const [loading ,setLoading] =useState(true);
+     const {data:blogs ,loading,error} = useFetch("http://localhost:8000/blogs");
 
-    const [error, setError] = useState(null);
-    const deleteBlog = (id)=> {
-        const newBlog= blogs.filter((blog)=> blog.id !== id);
-        setBlogs(newBlog);
+    
+    const deleteBlog = (id) => {
+        blogs = blogs.filter((blog) => blog.id !== id);
+      //  setBlogs(newBlog);
     }
-    // use  Effect 
-    useEffect (()=> {
-        fetch("http://localhost:8000/blogs")
-        .then((response)=> {
-            console.log(response);
-           if(!response.ok){
-               throw Error("Error Cannot get data !!!");
-           }
-            return response.json();
-        }
-        ).then((data)=>{
-            setBlogs(data)
-             setLoading(false);
-             setError(null);
-        })
-        .catch ((err) => {
-            console.log(err.message);
-            setLoading(false);
-            setError(err.message);
-        })
-    },[])
 
     return ( 
         <div className="container">
