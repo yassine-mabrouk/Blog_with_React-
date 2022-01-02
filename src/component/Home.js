@@ -2,30 +2,31 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import useFetch from './customHooks/useFetch'
 import BlogList from './BlogList';
+import Categorie from './Categorie';
 
 const Home = () => {
     
      const {data:blogs ,loading,error} = useFetch("http://localhost:8000/blogs");
  
-    const deleteBlog = (id) => {
-        blogs = blogs.filter((blog) => blog.id !== id);
-      //  setBlogs(newBlog);
-    }
-
+   
     return ( 
         <div className="container">
-            <h1 className="Blog text-center mb-4">Myblog </h1>   
-            <div class="row mt-2">
-               <div class="col-md-8 offset-md-2">
-                {error && <div class="alert alert-dismissible alert-danger">
+            <div className="row mt-2">
+               <div className="col-md-7 ">
+                {error && <div className="alert alert-dismissible alert-danger">
                 <strong>{error}</strong>  try submitting again.
                 </div>}
                 {loading && <div>Loading ...</div>}
                 {/* conditional templete get afficher data when we have data  */}
-               {blogs && <BlogList blogs={blogs} title = "All Blogs" deleteBlog={deleteBlog}/>}
-              {/* <BlogList blogs={blogs.filter ((blog) => blog.author==="yassine")} title = "Yassine's Blog "/> */}
-           
+               {blogs && <BlogList blogs={blogs} title = "All Blogs" />}
+             
               </div>
+              <div className="col-md-3 offset-md-2">
+               <Categorie></Categorie>
+             
+              </div>
+
+              
         </div>
         </div>
      );

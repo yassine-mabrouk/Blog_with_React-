@@ -8,7 +8,8 @@ const useFetch = (url) => {
 
     // use  Effect 
     useEffect(() => {
-            fetch(url)
+            const abortCont = new AbortController();
+            fetch(url, {signal: abortCont.signal})
                 .then((response) => {
                     console.log(response);
                     if (!response.ok) {
@@ -23,9 +24,15 @@ const useFetch = (url) => {
                 })
                 .catch((err) => {
                     console.log(err.message);
-                    setLoading(false);
-                    setError(err.message);
-                })
+                    if (err.name ==="AbortError"){
+                        console.log("fetch aborted ");
+                    } else {
+                           setLoading(false);
+                    setError(err.message);  
+                    }
+               
+                });
+                return ()=> abortCont.abort();
         }, [url])
         //  [url]) this that mean when we change url load data 
     return { data, loading, error };
